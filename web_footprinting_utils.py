@@ -4,6 +4,7 @@ from IPython.terminal.embed import InteractiveShellEmbed
 from bs4 import BeautifulSoup as bs
 from bs4 import BeautifulSoup, SoupStrainer
 import requests
+import os
 from os.path import join
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
@@ -83,8 +84,9 @@ class WebsiteRecord:
         options = webdriver.ChromeOptions()
         options.add_argument('--ignore-certificate-errors')
         options.add_argument("--headless")
+        options.add_argument("--no-sandbox")
 
-        self.driver = webdriver.Chrome(chrome_options=options, executable_path="chromedriver")   
+        self.driver = webdriver.Chrome(chrome_options=options, executable_path=os.path.join(os.getcwd(), "chromedriver"))   
 
     def whatweb(self, verbose = True):
         if verbose:
