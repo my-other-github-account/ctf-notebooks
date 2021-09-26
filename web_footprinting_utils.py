@@ -84,7 +84,7 @@ class WebsiteRecord:
         options.add_argument('--ignore-certificate-errors')
         options.add_argument("--headless")
 
-        self.driver = webdriver.Chrome(chrome_options=options)   
+        self.driver = webdriver.Chrome(chrome_options=options, executable_path="chromedriver")   
 
     def whatweb(self, verbose = True):
         if verbose:
