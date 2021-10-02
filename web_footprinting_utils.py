@@ -35,7 +35,7 @@ def setup_ipython():
         
     return get_ipython, interactive
     
-def show_term(ip, width=1200, height=500, relative_dir = '7_THM_CTF'):
+def show_term(ip, width=1200, height=500, relative_dir = ''):
     display(IFrame('http://%s:8888/lab/tree/%s' % (ip, relative_dir), width=width, height=height))
     
 def printr(text):
