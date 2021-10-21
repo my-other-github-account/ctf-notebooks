@@ -86,7 +86,7 @@ class WebsiteRecord:
         options.add_argument("--headless")
         options.add_argument("--no-sandbox")
 
-        self.driver = webdriver.Chrome(chrome_options=options, executable_path=os.path.join(os.getcwd(), "chromedriver"))   
+        self.driver = webdriver.Chrome(chrome_options=options, executable_path=os.path.join(os.getcwd(), "~/hax/chromedriver"))   
 
     def whatweb(self, verbose = True):
         if verbose:
@@ -151,9 +151,9 @@ class WebsiteRecord:
             website = website.split('//')[1]
         except: pass
 
-        get_ipython().system('cd okadminfinder3 && unbuffer python3 okadminfinder.py -u {website} | tee okadmin.txt')
-        result = get_ipython().getoutput('cat okadminfinder3/okadmin.txt')
-        links_only = get_ipython().getoutput('cat okadminfinder3/okadmin.txt | grep http')
+        get_ipython().system('cd ~/hax/okadminfinder3 && unbuffer python3 okadminfinder.py -u {website} | tee okadmin.txt')
+        result = get_ipython().getoutput('cat ~/hax/okadminfinder3/okadmin.txt')
+        links_only = get_ipython().getoutput('cat ~/hax/okadminfinder3/okadmin.txt | grep http')
         return result, links_only
 
     def nmap_http_battery(self, verbose = True):
@@ -259,8 +259,8 @@ class WebsiteRecord:
         return final_links, other_links
 
     def count_words(self):
-        get_ipython().system('cd CeWL && unbuffer ./cewl.rb -c {self.website} | tee wordcount.txt')
-        result = get_ipython().getoutput('cat CeWL/wordcount.txt')
+        get_ipython().system('cd ~/hax/CeWL && unbuffer ./cewl.rb -c {self.website} | tee wordcount.txt')
+        result = get_ipython().getoutput('cat ~/hax/CeWL/wordcount.txt')
         return result
 
 class LinkRecorder:
