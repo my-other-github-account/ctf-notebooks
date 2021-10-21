@@ -86,7 +86,7 @@ class WebsiteRecord:
         options.add_argument("--headless")
         options.add_argument("--no-sandbox")
 
-        self.driver = webdriver.Chrome(chrome_options=options, executable_path="~/hax/chromedriver")   
+        self.driver = webdriver.Chrome(chrome_options=options, executable_path="/home/parallels/hax/chromedriver")   
 
     def whatweb(self, verbose = True):
         if verbose:
