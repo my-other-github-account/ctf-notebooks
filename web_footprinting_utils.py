@@ -90,6 +90,7 @@ class WebsiteRecord:
 
     def whatweb(self, verbose = True):
         if verbose:
+            get_ipython().system('echo whatweb {self.website}')
             get_ipython().system('whatweb {self.website}')
             
         whatweb_out = get_ipython().getoutput('whatweb --colour=never {self.website}')
@@ -103,6 +104,7 @@ class WebsiteRecord:
         return whatweb_out
 
     def view_source(self, verbose = True):
+        source = get_ipython().getoutput('echo curl -s {self.website}')
         source = get_ipython().getoutput('curl -s {self.website}')
         pretty_source = bs(source.nlstr, features="lxml").prettify()
         if verbose:
@@ -141,10 +143,13 @@ class WebsiteRecord:
         if extensions:
             extension_list = "-e .asp,.aspx,.bat,.c,.cfm,.cgi,.com,.dll,.exe,.htm,.html,.inc,.jhtml,.jsa,.jsp,.log,.mdb,.nsf,.php,.phtml,.pl,.reg,.sh,.shtml,.sql,.txt,.xml,/"
             
+        get_ipython().system('echo ffuf -ic -noninteractive -timeout {timeout} -t {threads} -recursion {extension_list} -v -c -r -w {wordlist} -u {self.website}/FUZZ -o ffuf_out.json')
         get_ipython().system('ffuf -ic -noninteractive -timeout {timeout} -t {threads} -recursion {extension_list} -v -c -r -w {wordlist} -u {self.website}/FUZZ -o ffuf_out.json')
         
         
-        
+    def nikto(self):
+            get_ipython().system('nikto -host {self.website}')
+            
     def okadminfinder(self, verbose = True):
         website = self.website
         try:
@@ -200,6 +205,9 @@ class WebsiteRecord:
             
         printr("\n\nNMAP:")
         self.nmap_http_battery()
+        
+        printr("\n\nNikto:")
+        self.nikto(self)
         
         printr("\n\nWord Counts:")
         self.count_words()
