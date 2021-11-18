@@ -206,8 +206,6 @@ class WebsiteRecord:
         printr("\n\nNMAP:")
         self.nmap_http_battery()
         
-        printr("\n\nNikto:")
-        self.nikto()
         
         printr("\n\nWord Counts:")
         self.count_words()
@@ -228,6 +226,9 @@ class WebsiteRecord:
         
         printr("\n\nOkAdmin:")
         result, okadmin_links = self.okadminfinder()
+        
+        printr("\n\nNikto:")
+        self.nikto()
     
     def get_links(self):
         page = requests.get(self.website)    
