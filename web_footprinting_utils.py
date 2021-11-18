@@ -207,7 +207,7 @@ class WebsiteRecord:
         self.nmap_http_battery()
         
         printr("\n\nNikto:")
-        self.nikto(self)
+        self.nikto()
         
         printr("\n\nWord Counts:")
         self.count_words()
